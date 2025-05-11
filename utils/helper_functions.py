@@ -14,15 +14,27 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# for loading configs to environment variables
-def load_config(config_path: str) -> Dict[str, Any]:
-    """Load configuration from a JSON file."""
-    if not os.path.exists(config_path):
+def load_config(config_path: str = None) -> Dict[str, Any]:
+    """
+    Load configuration from Streamlit secrets.
+    The config_path parameter is kept for backward compatibility but is no longer used.
+    """
+    try:
+        # Get API keys from Streamlit secrets
+        config = {
+            'OPENAI_API_KEY': st.secrets.api_keys.openai,
+            'CLAUDE_API_KEY': st.secrets.api_keys.claude,
+            'GEMINI_API_KEY': st.secrets.api_keys.gemini,
+            'GROQ_API_KEY': st.secrets.api_keys.groq,
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        # Set environment variables
+        for key, value in config.items():
+            if key != 'timestamp':
+                os.environ[key] = value
+                
+        return config
+    except Exception as e:
+        logger.error(f"Error loading config from Streamlit secrets: {str(e)}")
         return {}
-    
-    with open(config_path, 'r') as f:
-        config = json.load(f)
-    
-    # Add timestamp to config
-    config['timestamp'] = datetime.now().isoformat()
-    return config

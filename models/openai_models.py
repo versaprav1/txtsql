@@ -6,11 +6,6 @@ from langchain_openai import ChatOpenAI
 from typing import Optional, Dict, Any
 import json
 
-# Load configuration file
-config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
-with open(config_path, 'r') as file:
-    config = yaml.safe_load(file)
-
 # Initialize client as None - will be created when needed
 client = None
 
@@ -20,9 +15,14 @@ def get_client():
     """
     global client
     if client is None:
-        api_key = config.get('OPENAI_API_KEY') or os.environ.get("OPENAI_API_KEY")
+        try:
+            import streamlit as st
+            api_key = st.secrets.api_keys.openai
+        except:
+            api_key = os.environ.get("OPENAI_API_KEY")
+            
         if not api_key:
-            raise ValueError("OpenAI API key not found in config or environment variables")
+            raise ValueError("OpenAI API key not found in Streamlit secrets or environment variables")
         client = OpenAI(api_key=api_key)
     return client
 

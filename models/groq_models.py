@@ -18,13 +18,19 @@ class GroqJSONModel:
             temperature (float): Controls randomness in the model's output (0 to 1)
             model (str): The specific Groq model to use
         """
-        config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
-        load_config(config_path)
-        self.api_key = os.environ.get("GROQ_API_KEY")
+        try:
+            import streamlit as st
+            self.api_key = st.secrets.api_keys.groq
+        except:
+            self.api_key = os.environ.get("GROQ_API_KEY")
+            
+        if not self.api_key:
+            raise ValueError("Groq API key not found in Streamlit secrets or environment variables")
+            
         self.headers = {
             'Content-Type': 'application/json', 
             'Authorization': f'Bearer {self.api_key}'
-            }
+        }
         self.model_endpoint = "https://api.groq.com/openai/v1/chat/completions"
         self.temperature = temperature
         self.model = model
@@ -97,13 +103,19 @@ class GroqModel:
             temperature (float): Controls randomness in the model's output (0 to 1)
             model (str): The specific Groq model to use
         """
-        config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
-        load_config(config_path)
-        self.api_key = os.environ.get("GROQ_API_KEY")
+        try:
+            import streamlit as st
+            self.api_key = st.secrets.api_keys.groq
+        except:
+            self.api_key = os.environ.get("GROQ_API_KEY")
+            
+        if not self.api_key:
+            raise ValueError("Groq API key not found in Streamlit secrets or environment variables")
+            
         self.headers = {
             'Content-Type': 'application/json', 
             'Authorization': f'Bearer {self.api_key}'
-            }
+        }
         self.model_endpoint = "https://api.groq.com/openai/v1/chat/completions"
         self.temperature = temperature
         self.model = model

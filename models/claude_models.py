@@ -20,9 +20,15 @@ class ClaudJSONModel:
             temperature (float): Controls randomness in model responses. Default is 0.
             model (str): The specific Claude model to use. Default is None.
         """
-        config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
-        load_config(config_path)
-        self.api_key = os.environ.get("CLAUD_API_KEY")
+        try:
+            import streamlit as st
+            self.api_key = st.secrets.api_keys.claude
+        except:
+            self.api_key = os.environ.get("CLAUDE_API_KEY")
+            
+        if not self.api_key:
+            raise ValueError("Claude API key not found in Streamlit secrets or environment variables")
+            
         self.headers = {
             'Content-Type': 'application/json', 
             'x-api-key': self.api_key,
@@ -103,9 +109,15 @@ class ClaudModel:
             temperature (float): Controls randomness in model responses. Default is 0.
             model (str): The specific Claude model to use. Default is None.
         """
-        config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
-        load_config(config_path)
-        self.api_key = os.environ.get("CLAUD_API_KEY")
+        try:
+            import streamlit as st
+            self.api_key = st.secrets.api_keys.claude
+        except:
+            self.api_key = os.environ.get("CLAUDE_API_KEY")
+            
+        if not self.api_key:
+            raise ValueError("Claude API key not found in Streamlit secrets or environment variables")
+            
         self.headers = {
             'Content-Type': 'application/json', 
             'x-api-key': self.api_key,

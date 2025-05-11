@@ -23,9 +23,15 @@ class GeminiJSONModel:
             temperature (float): Temperature setting for response generation (default: 0)
             model (str): The Gemini model identifier to use
         """
-        config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
-        load_config(config_path)
-        self.api_key = os.environ.get("GEMINI_API_KEY")
+        try:
+            import streamlit as st
+            self.api_key = st.secrets.api_keys.gemini
+        except:
+            self.api_key = os.environ.get("GEMINI_API_KEY")
+            
+        if not self.api_key:
+            raise ValueError("Gemini API key not found in Streamlit secrets or environment variables")
+            
         self.headers = {
             'Content-Type': 'application/json'
         }
@@ -110,9 +116,15 @@ class GeminiModel:
             temperature (float): Temperature setting for response generation (default: 0)
             model (str): The Gemini model identifier to use
         """
-        config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
-        load_config(config_path)
-        self.api_key = os.environ.get("GEMINI_API_KEY")
+        try:
+            import streamlit as st
+            self.api_key = st.secrets.api_keys.gemini
+        except:
+            self.api_key = os.environ.get("GEMINI_API_KEY")
+            
+        if not self.api_key:
+            raise ValueError("Gemini API key not found in Streamlit secrets or environment variables")
+            
         self.headers = {
             'Content-Type': 'application/json'
         }
