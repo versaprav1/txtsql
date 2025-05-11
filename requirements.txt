@@ -9,4 +9,5 @@ google-generativeai
 openai
 streamlit-agraph
 termcolor
-psycopg2
+psycopg2-binary
+
