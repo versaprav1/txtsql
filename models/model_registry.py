@@ -5,6 +5,7 @@ from openai import OpenAI
 from utils.helper_functions import load_config
 import traceback
 import yaml
+import streamlit as st
 
 class ModelRegistry:
     @staticmethod
@@ -20,29 +21,21 @@ class ModelRegistry:
             elif server == "ollama":
                 return ModelRegistry.fetch_ollama_models()
             elif server == "gemini":
-                return []  # Implement actual Gemini model fetching
+                return ModelRegistry.fetch_gemini_models()
             return []
         except Exception as e:
             print(f"Error getting models for {server}: {e}")
             return []
 
     @staticmethod
-    def fetch_openai_models(api_key: Optional[str] = None) -> List[str]:
+    def fetch_openai_models() -> List[str]:
         """Fetch available models from OpenAI API"""
         try:
+            # Get API key from Streamlit secrets
+            api_key = st.secrets.api_keys.openai
+            
             if not api_key:
-                # First try environment variable
-                api_key = os.environ.get("OPENAI_API_KEY")
-                
-                # If not in environment, try config file
-                if not api_key:
-                    config_path = os.path.join(os.path.dirname(__file__), '..', 'config', 'config.yaml')
-                    with open(config_path, 'r') as file:
-                        config = yaml.safe_load(file)
-                    api_key = config.get('OPENAI_API_KEY')
-                
-            if not api_key:
-                print("No OpenAI API key found in environment or config file")
+                print("No OpenAI API key found in Streamlit secrets")
                 return []
             
             print(f"Found OpenAI API key starting with: {api_key[:6]}...")
@@ -65,12 +58,13 @@ class ModelRegistry:
             return []
 
     @staticmethod
-    def fetch_groq_models(api_key: Optional[str] = None) -> List[str]:
+    def fetch_groq_models() -> List[str]:
         """Fetch available models from Groq API"""
         try:
+            api_key = st.secrets.api_keys.groq
             if not api_key:
-                config = load_config()
-                api_key = config.get('GROQ_API_KEY') or os.environ.get("GROQ_API_KEY")
+                print("No Groq API key found in Streamlit secrets")
+                return []
                 
             headers = {"Authorization": f"Bearer {api_key}"}
             response = requests.get("https://api.groq.com/v1/models", headers=headers)
@@ -90,12 +84,13 @@ class ModelRegistry:
             return []
 
     @staticmethod
-    def fetch_claude_models(api_key: Optional[str] = None) -> List[str]:
+    def fetch_claude_models() -> List[str]:
         """Fetch available Claude models"""
         try:
+            api_key = st.secrets.api_keys.claude
             if not api_key:
-                config = load_config()
-                api_key = config.get('CLAUDE_API_KEY') or os.environ.get("CLAUDE_API_KEY")
+                print("No Claude API key found in Streamlit secrets")
+                return []
                 
             headers = {
                 "x-api-key": api_key,
@@ -105,4 +100,19 @@ class ModelRegistry:
             return [model["id"] for model in response.json()["models"]]
         except Exception as e:
             print(f"Error fetching Claude models: {e}")
+            return []
+
+    @staticmethod
+    def fetch_gemini_models() -> List[str]:
+        """Fetch available Gemini models"""
+        try:
+            api_key = st.secrets.api_keys.gemini
+            if not api_key:
+                print("No Gemini API key found in Streamlit secrets")
+                return []
+            
+            # Gemini models are fixed for now
+            return ["gemini-pro", "gemini-pro-vision"]
+        except Exception as e:
+            print(f"Error fetching Gemini models: {e}")
             return []

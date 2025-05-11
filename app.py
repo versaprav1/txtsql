@@ -68,10 +68,24 @@ from agents.agents import (
 config_path = os.path.join(os.path.dirname(__file__), 'config', 'config.yaml')
 
 def load_api_keys():
-    """Load API keys from config file"""
-    with open(config_path, 'r') as file:
-        config = yaml.safe_load(file)
-    return config
+    """Load API keys from Streamlit secrets"""
+    try:
+        # Get API keys from Streamlit secrets
+        api_keys = {
+            "OPENAI_API_KEY": st.secrets.api_keys.openai,
+            "CLAUDE_API_KEY": st.secrets.api_keys.claude,
+            "GEMINI_API_KEY": st.secrets.api_keys.gemini,
+            "GROQ_API_KEY": st.secrets.api_keys.groq
+        }
+        
+        # Set environment variables
+        for key, value in api_keys.items():
+            os.environ[key] = value
+            
+        return api_keys
+    except Exception as e:
+        st.error(f"Error loading API keys: {str(e)}")
+        return {}
 
 # SQL Tools
 def get_db_connection():
@@ -401,6 +415,20 @@ class ChatWorkflow:
             print(f"Server: {server}")
             print(f"Temperature: {temperature}")
             print(f"Model Endpoint: {model_endpoint}")
+
+            # Verify API key is available for the selected server
+            api_key = None
+            if server == "openai":
+                api_key = st.secrets.api_keys.openai
+            elif server == "claude":
+                api_key = st.secrets.api_keys.claude
+            elif server == "gemini":
+                api_key = st.secrets.api_keys.gemini
+            elif server == "groq":
+                api_key = st.secrets.api_keys.groq
+
+            if not api_key:
+                raise ValueError(f"No API key found for server: {server}")
 
             # Call get_compiled_agent_graph with only the expected parameters
             self.workflow = get_compiled_agent_graph(
@@ -940,20 +968,35 @@ def initialize_chat_workflow():
     if 'messages' not in st.session_state:
         st.session_state.messages = []
 
-    # Ensure server_endpoint is set based on the current server
-    if 'server' in st.session_state and 'server_endpoint' not in st.session_state:
-        server = st.session_state.server
-        if server == "openai":
-            st.session_state.server_endpoint = "https://api.openai.com/v1"
-        elif server == "groq":
-            st.session_state.server_endpoint = "https://api.groq.com/openai/v1"
-        elif server == "claude":
-            st.session_state.server_endpoint = "https://api.anthropic.com/v1"
-        elif server == "gemini":
-            st.session_state.server_endpoint = "https://generativelanguage.googleapis.com/v1"
-        elif server == "ollama":
-            st.session_state.server_endpoint = "http://localhost:11434"
-        print(f"Set server_endpoint to {st.session_state.server_endpoint} for {server}")
+    # Set default values for required parameters if not already set
+    if 'server' not in st.session_state:
+        st.session_state.server = "openai"
+    
+    # Set server_endpoint based on the current server
+    server = st.session_state.server
+    if server == "openai":
+        st.session_state.server_endpoint = "https://api.openai.com/v1"
+    elif server == "groq":
+        st.session_state.server_endpoint = "https://api.groq.com/openai/v1"
+    elif server == "claude":
+        st.session_state.server_endpoint = "https://api.anthropic.com/v1"
+    elif server == "gemini":
+        st.session_state.server_endpoint = "https://generativelanguage.googleapis.com/v1"
+    elif server == "ollama":
+        st.session_state.server_endpoint = "http://localhost:11434"
+    print(f"Set server_endpoint to {st.session_state.server_endpoint} for {server}")
+
+    # Set default temperature if not set
+    if 'temperature' not in st.session_state:
+        st.session_state.temperature = 0.0
+
+    # Initialize available models if not set
+    if 'available_models' not in st.session_state:
+        update_models()
+
+    # Set default model if not set
+    if 'llm_model' not in st.session_state and st.session_state.get('available_models'):
+        st.session_state.llm_model = st.session_state.available_models[0]
 
     return st.session_state.chat_workflow
 
@@ -1069,32 +1112,13 @@ def render_settings_sidebar(chat_workflow):
             save_config(chat_workflow)
 
 def update_models():
-    # Add debug output
-    print(f"Current server config: {st.session_state.server}")
-    print(f"Model registry response: {ModelRegistry.get_available_models(st.session_state.server)}")
     """Update available models when server changes"""
-    server = st.session_state.server
-    print(f"Updating models for server: {server}")
-
     try:
-        # Get models from registry
-        models = ModelRegistry.get_available_models(server)
+        # Get current server
+        server = st.session_state.server
+        print(f"Updating models for server: {server}")
 
-        if not models:
-            print(f"No models found for {server}")
-            st.error(f"No models available for {server}")
-            st.session_state.available_models = []
-            return
-
-        print(f"Available models for {server}: {models}")
-        st.session_state.available_models = models
-
-        # Set first model as default if none selected or current selection is invalid
-        if 'llm_model' not in st.session_state or st.session_state.llm_model not in models:
-            st.session_state.llm_model = models[0]
-            print(f"Set default model to: {models[0]}")
-
-        # Set appropriate server endpoint based on server
+        # Set server_endpoint based on server
         if server == "openai":
             st.session_state.server_endpoint = "https://api.openai.com/v1"
         elif server == "groq":
@@ -1105,6 +1129,24 @@ def update_models():
             st.session_state.server_endpoint = "https://generativelanguage.googleapis.com/v1"
         elif server == "ollama":
             st.session_state.server_endpoint = "http://localhost:11434"
+        print(f"Set server_endpoint to {st.session_state.server_endpoint}")
+
+        # Get models from registry
+        models = ModelRegistry.get_available_models(server)
+        print(f"Available models for {server}: {models}")
+
+        if not models:
+            print(f"No models found for {server}")
+            st.error(f"No models available for {server}. Please check your API key in Streamlit secrets.")
+            st.session_state.available_models = []
+            return
+
+        st.session_state.available_models = models
+
+        # Set first model as default if none selected or current selection is invalid
+        if 'llm_model' not in st.session_state or st.session_state.llm_model not in models:
+            st.session_state.llm_model = models[0]
+            print(f"Set default model to: {models[0]}")
 
     except Exception as e:
         error_msg = f"Error updating models: {str(e)}"
@@ -1316,10 +1358,6 @@ def main():
     # Initialize chat workflow if not already done
     if 'chat_workflow' not in st.session_state:
         st.session_state.chat_workflow = initialize_chat_workflow()
-
-    # Check if the workflow has been built
-    if not st.session_state.chat_workflow.workflow:
-        st.session_state.chat_workflow.build_workflow()
 
     # Get reference to chat_workflow
     chat_workflow = st.session_state.chat_workflow
