@@ -10,4 +10,4 @@ openai
 streamlit-agraph
 termcolor
 psycopg2-binary
-
+langchain_openai
