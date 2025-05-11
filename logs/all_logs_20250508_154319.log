@@ -1,0 +1,1767 @@
+2025-05-08 15:43:47,758 - INFO - QUERY START: list all interfaces
+2025-05-08 15:43:47,760 - INFO - QUERY ID: 1746711827-090069
+2025-05-08 15:43:47,762 - INFO - START TIME: 2025-05-08 15:43:47.665070
+2025-05-08 15:43:47,763 - INFO - Starting workflow execution for: 'list all interfaces'
+2025-05-08 15:43:47,768 - INFO - Initial state validated successfully
+2025-05-08 15:43:47,774 - INFO - Using recursion limit: 40
+2025-05-08 15:43:47,781 - INFO - Starting workflow stream
+2025-05-08 15:43:47,807 - DEBUG - STDOUT: 
+==== PLANNER NODE START ====
+2025-05-08 15:43:47,824 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:47,838 - DEBUG - STDOUT: Current execution path: []
+2025-05-08 15:43:47,875 - DEBUG - STDOUT: Processing user question: 'list all interfaces'
+2025-05-08 15:43:47,891 - DEBUG - STDOUT: Error initializing database services: name 'DatabaseMetadataStore' is not defined
+2025-05-08 15:43:48,010 - DEBUG - STDERR: Traceback (most recent call last):
+2025-05-08 15:43:48,013 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 394, in __init__
+    self.metadata_store = DatabaseMetadataStore()
+2025-05-08 15:43:48,015 - DEBUG - STDERR: NameError: name 'DatabaseMetadataStore' is not defined
+2025-05-08 15:43:48,018 - DEBUG - STDOUT: Successfully initialized PlannerAgent with database capabilities using model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:48,031 - DEBUG - STDOUT: PlannerAgent is using LLM to analyze the query and determine the appropriate database tables and columns
+2025-05-08 15:43:48,037 - DEBUG - STDOUT: Invoking PlannerAgent with question: 'list all interfaces'
+2025-05-08 15:43:48,124 - DEBUG - STDOUT: Invoking Planner with question: list all interfaces
+2025-05-08 15:43:50,139 - DEBUG - STDOUT: Validation error: Invalid query_type: sql
+2025-05-08 15:43:50,139 - DEBUG - STDOUT: Initial validation failed, attempting recovery...
+2025-05-08 15:43:50,143 - DEBUG - STDOUT: Error in PlannerAgent.invoke: 'PlannerAgent' object has no attribute 'current_db_name'
+2025-05-08 15:43:50,163 - DEBUG - STDERR: Traceback (most recent call last):
+2025-05-08 15:43:50,165 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 922, in invoke
+    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)
+2025-05-08 15:43:50,168 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 633, in enhance_plan_with_metadata
+    "database": self.current_db_name,
+2025-05-08 15:43:50,170 - DEBUG - STDERR: AttributeError: 'PlannerAgent' object has no attribute 'current_db_name'
+2025-05-08 15:43:50,200 - DEBUG - STDOUT: PlannerAgent returned plan: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:50.175578",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:50,212 - DEBUG - STDOUT: Planner node output: current_agent=selector
+2025-05-08 15:43:50,212 - DEBUG - STDOUT: Planner response being sent to selector: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:50.175578",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:50,225 - DEBUG - STDOUT: ==== PLANNER NODE END ====
+2025-05-08 15:43:50,228 - INFO - Processing agent: planner
+2025-05-08 15:43:50,229 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:50,230 - DEBUG - Event keys: dict_keys(['planner'])
+2025-05-08 15:43:50,231 - DEBUG - Execution path: ['planner']
+2025-05-08 15:43:50,231 - DEBUG - planner response: {'error_type': 'NON_FATAL', 'error_message': "'PlannerAgent' object has no attribute 'current_db_name'", 'timestamp': '2025-05-08T15:43:50.175578', 'stack_trace': 'Traceback (most recent call last):\n  File "D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File "D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py", line 633, in enhance_plan_with_metadata\n    "database": self.current_db_name,\nAttributeError: \'PlannerAgent\' object has no attribute \'current_db_name\'\n', 'component': 'PlannerAgent', 'state': {}, 'recommendations': ['Review error logs for more details', 'Check state values for inconsistencies', 'Contact support if issue persists']}
+2025-05-08 15:43:50,243 - DEBUG - STDOUT: 
+==== SELECTOR NODE START ====
+2025-05-08 15:43:50,245 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:50,246 - DEBUG - STDOUT: Current execution path: ['planner']
+2025-05-08 15:43:50,246 - DEBUG - STDOUT: Planner response received: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:50.175578",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:50,255 - DEBUG - STDOUT: Selector is processing planner response for question: 'list all interfaces'
+2025-05-08 15:43:50,257 - DEBUG - STDOUT: NOTE: The selector node is currently simplified and doesn't use LLM.
+2025-05-08 15:43:50,279 - DEBUG - STDOUT: It simply passes through to the SQLGenerator without making actual selections.
+2025-05-08 15:43:50,284 - DEBUG - STDOUT: Selector node output: current_agent=SQLGenerator
+2025-05-08 15:43:50,290 - DEBUG - STDOUT: Selector response being sent to SQLGenerator: {
+  "raw": "Selection completed",
+  "selected_schemas": {},
+  "selected_tool": "sql_query",
+  "selected_datasource": "information_schema.tables",
+  "information_needed": "Table listing",
+  "reason_for_selection": "Direct database query is the most efficient way to list tables",
+  "query_parameters": {
+    "columns": [
+      "table_schema",
+      "table_name"
+    ],
+    "filters": "table_type = 'BASE TABLE'"
+  }
+}
+2025-05-08 15:43:50,316 - DEBUG - STDOUT: ==== SELECTOR NODE END ====
+2025-05-08 15:43:50,319 - INFO - Processing agent: selector
+2025-05-08 15:43:50,321 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:50,323 - DEBUG - Event keys: dict_keys(['selector'])
+2025-05-08 15:43:50,326 - DEBUG - Execution path: ['planner', 'selector']
+2025-05-08 15:43:50,328 - DEBUG - selector response: {'raw': 'Selection completed', 'selected_schemas': {}, 'selected_tool': 'sql_query', 'selected_datasource': 'information_schema.tables', 'information_needed': 'Table listing', 'reason_for_selection': 'Direct database query is the most efficient way to list tables', 'query_parameters': {'columns': ['table_schema', 'table_name'], 'filters': "table_type = 'BASE TABLE'"}}
+2025-05-08 15:43:50,331 - DEBUG - STDOUT: 
+==== SQL GENERATOR NODE START ====
+2025-05-08 15:43:50,337 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:50,344 - DEBUG - STDOUT: Current execution path: ['planner', 'selector']
+2025-05-08 15:43:50,347 - DEBUG - STDOUT: Selector response received: {
+  "raw": "Selection completed",
+  "selected_schemas": {},
+  "selected_tool": "sql_query",
+  "selected_datasource": "information_schema.tables",
+  "information_needed": "Table listing",
+  "reason_for_selection": "Direct database query is the most efficient way to list tables",
+  "query_parameters": {
+    "columns": [
+      "table_schema",
+      "table_name"
+    ],
+    "filters": "table_type = 'BASE TABLE'"
+  }
+}
+2025-05-08 15:43:50,368 - DEBUG - STDOUT: Created SQLGenerator with model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:50,371 - DEBUG - STDOUT: Invoking SQLGenerator with user_question: 'list all interfaces'
+2025-05-08 15:43:50,376 - DEBUG - STDOUT: SQLGenerator returned response: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:50.376332",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:50,388 - DEBUG - STDOUT: SQL Generator node output: current_agent=reviewer
+2025-05-08 15:43:50,390 - DEBUG - STDOUT: SQL query generated: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:50,399 - DEBUG - STDOUT: SQL Generator response being sent to reviewer: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:50.376332",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:50,414 - DEBUG - STDOUT: ==== SQL GENERATOR NODE END ====
+2025-05-08 15:43:50,418 - INFO - Processing agent: SQLGenerator
+2025-05-08 15:43:50,419 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:50,420 - DEBUG - Event keys: dict_keys(['SQLGenerator'])
+2025-05-08 15:43:50,421 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator']
+2025-05-08 15:43:50,423 - DEBUG - SQLGenerator response: {'sql_generator_response': {'sql_query': "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;", 'explanation': 'Query to discover interface-related columns across all schemas', 'validation_checks': ['Query syntax validated', 'Schema and table specified', 'Column list validated', 'WHERE clause included', 'Results limited for safety'], 'query_type': 'interface_list', 'estimated_complexity': 'LOW', 'required_indexes': [], 'metadata': {'generated_at': '2025-05-08 15:43:50.376332', 'validation_status': 'valid', 'has_limit': False, 'has_order': True}}}
+2025-05-08 15:43:50,429 - DEBUG - STDOUT: 
+==== REVIEWER NODE START ====
+2025-05-08 15:43:50,440 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:50,445 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator']
+2025-05-08 15:43:50,454 - DEBUG - STDOUT: SQL query to review: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:50,466 - DEBUG - STDOUT: SQLGenerator response received: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:50.376332",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:50,480 - DEBUG - STDOUT: Reviewer is analyzing SQL query for question: 'list all interfaces'
+2025-05-08 15:43:50,482 - DEBUG - STDOUT: Using LLM-based ReviewerAgent to analyze the SQL query
+2025-05-08 15:43:50,487 - DEBUG - STDOUT: Created ReviewerAgent with model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:50,489 - DEBUG - STDOUT: Invoking ReviewerAgent with user_question: 'list all interfaces' and sql_query: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:50,495 - DEBUG - STDOUT: ReviewerAgent returned review: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:50.495817",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:50,510 - DEBUG - STDOUT: Reviewer node output: current_agent=sql_executor
+2025-05-08 15:43:50,514 - DEBUG - STDOUT: Reviewer response being sent to sql_executor: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:50.495817",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:50,531 - DEBUG - STDOUT: ==== REVIEWER NODE END ====
+2025-05-08 15:43:50,536 - INFO - Processing agent: reviewer
+2025-05-08 15:43:50,538 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:50,539 - DEBUG - Event keys: dict_keys(['reviewer'])
+2025-05-08 15:43:50,543 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer']
+2025-05-08 15:43:50,546 - DEBUG - reviewer response: {'reviewer_response': {'is_correct': False, 'issues': ['No LIMIT clause'], 'suggestions': ['Add LIMIT clause to prevent large result sets', 'Ensure proper indexes exist for WHERE clause columns', 'Consider adding indexes on WHERE clause columns', 'Consider adding appropriate WHERE clauses', 'Use explicit column names instead of *', 'Add ORDER BY for consistent results'], 'explanation': 'Query validation found issues: No LIMIT clause', 'security_concerns': [], 'performance_impact': 'MEDIUM', 'confidence_score': 1.0, 'metadata': {'reviewed_at': '2025-05-08 15:43:50.495817', 'query_type': 'SELECT', 'has_joins': False, 'has_where': True, 'has_limit': False}}}
+2025-05-08 15:43:50,555 - DEBUG - STDOUT: 
+==== SQL EXECUTOR NODE START ====
+2025-05-08 15:43:50,562 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:50,564 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer']
+2025-05-08 15:43:50,567 - DEBUG - STDOUT: SQL query to execute: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:50,571 - DEBUG - STDOUT: Reviewer response received: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:50.495817",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:50,589 - DEBUG - STDOUT: SQL Executor is processing SQL query: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:50,921 - DEBUG - STDOUT: Executing SQL query against database: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:50,925 - DEBUG - STDOUT: NOTE: SQL Executor does not use LLM. It directly executes the SQL query against the database.
+2025-05-08 15:43:50,927 - DEBUG - STDOUT: Attempting database connection to localhost:5432/new as postgres
+2025-05-08 15:43:51,015 - DEBUG - STDOUT: Successfully connected to database new at localhost:5432
+2025-05-08 15:43:51,017 - DEBUG - STDOUT: Database is available
+2025-05-08 15:43:51,019 - DEBUG - STDOUT: Attempting database connection to localhost:5432/new as postgres
+2025-05-08 15:43:51,113 - DEBUG - STDOUT: Successfully connected to database new at localhost:5432
+2025-05-08 15:43:51,327 - DEBUG - STDOUT: Successfully executed query against actual database
+2025-05-08 15:43:51,329 - DEBUG - STDOUT: SQL query execution results: {
+  "column_names": [
+    "table_schema",
+    "table_name",
+    "column_name"
+  ],
+  "rows": [
+    [
+      "dev",
+      "abap_integration_engine_interfaces",
+      "abap_integration_engine_interface_destination"
+    ],
+    [
+      "dev",
+      "pro_agreements",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "interface_namespace"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "pro_integrated_configuration_interface_channel"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_rules",
+      "pro_integrated_configuration_interface_rules"
+    ],
+    [
+      "dev",
+      "pro_integrated_configurations",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_performance_data",
+      "interface_name"
+    ],
+    [
+      "dev",
+      "pro_performance_stats",
+      "interface_name"
+    ],
+    [
+      "dev",
+      "system_mappings",
+      "interface_pattern"
+    ]
+  ],
+  "row_count": 10,
+  "execution_time": 0.212707,
+  "query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+  "status": "success"
+}
+2025-05-08 15:43:51,352 - DEBUG - STDOUT: SQL Executor node output: current_agent=router
+2025-05-08 15:43:51,354 - DEBUG - STDOUT: SQL query results summary: status=success, rows=10
+2025-05-08 15:43:51,355 - DEBUG - STDOUT: ==== SQL EXECUTOR NODE END ====
+2025-05-08 15:43:51,360 - INFO - Processing agent: sql_executor
+2025-05-08 15:43:51,361 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:51,362 - DEBUG - Event keys: dict_keys(['sql_executor'])
+2025-05-08 15:43:51,363 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor']
+2025-05-08 15:43:51,364 - DEBUG - STDOUT: 
+==== ROUTER NODE START ====
+2025-05-08 15:43:51,365 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:51,367 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor']
+2025-05-08 15:43:51,369 - DEBUG - STDOUT: RouterAgent returned decision: {
+  "router_response": {
+    "route_to": "planner",
+    "reason": "Starting new workflow",
+    "feedback": "Initializing workflow with planner",
+    "state_updates": {
+      "workflow_started": true,
+      "start_time": "2025-05-08T15:43:51.369327"
+    },
+    "confidence_score": 1.0,
+    "requires_human_input": false
+  }
+}
+2025-05-08 15:43:51,393 - DEBUG - STDOUT: Route decision: planner
+2025-05-08 15:43:51,403 - DEBUG - STDOUT: Router node output: current_agent=planner
+2025-05-08 15:43:51,404 - DEBUG - STDOUT: Router response: {
+  "route_to": "planner",
+  "reason": "Starting new workflow",
+  "feedback": "Initializing workflow with planner",
+  "state_updates": {
+    "workflow_started": true,
+    "start_time": "2025-05-08T15:43:51.369327"
+  },
+  "confidence_score": 1.0,
+  "requires_human_input": false
+}
+2025-05-08 15:43:51,411 - DEBUG - STDOUT: ==== ROUTER NODE END ====
+2025-05-08 15:43:51,415 - DEBUG - STDOUT: ROUTE DECISION: planner -> to_planner
+2025-05-08 15:43:51,418 - INFO - Processing agent: router
+2025-05-08 15:43:51,419 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:51,421 - DEBUG - Event keys: dict_keys(['router'])
+2025-05-08 15:43:51,422 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router']
+2025-05-08 15:43:51,423 - DEBUG - router response: {'route_to': 'planner', 'reason': 'Starting new workflow', 'feedback': 'Initializing workflow with planner', 'state_updates': {'workflow_started': True, 'start_time': '2025-05-08T15:43:51.369327'}, 'confidence_score': 1.0, 'requires_human_input': False}
+2025-05-08 15:43:51,425 - DEBUG - STDOUT: 
+==== PLANNER NODE START ====
+2025-05-08 15:43:51,427 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:51,428 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router']
+2025-05-08 15:43:51,429 - DEBUG - STDOUT: Processing user question: 'list all interfaces'
+2025-05-08 15:43:51,431 - DEBUG - STDOUT: Error initializing database services: name 'DatabaseMetadataStore' is not defined
+2025-05-08 15:43:51,480 - DEBUG - STDERR: Traceback (most recent call last):
+2025-05-08 15:43:51,483 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 394, in __init__
+    self.metadata_store = DatabaseMetadataStore()
+2025-05-08 15:43:51,485 - DEBUG - STDERR: NameError: name 'DatabaseMetadataStore' is not defined
+2025-05-08 15:43:51,486 - DEBUG - STDOUT: Successfully initialized PlannerAgent with database capabilities using model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:51,488 - DEBUG - STDOUT: PlannerAgent is using LLM to analyze the query and determine the appropriate database tables and columns
+2025-05-08 15:43:51,491 - DEBUG - STDOUT: Invoking PlannerAgent with question: 'list all interfaces'
+2025-05-08 15:43:51,492 - DEBUG - STDOUT: Invoking Planner with question: list all interfaces
+2025-05-08 15:43:52,712 - DEBUG - STDOUT: Validation error: Invalid query_type: sql
+2025-05-08 15:43:52,713 - DEBUG - STDOUT: Initial validation failed, attempting recovery...
+2025-05-08 15:43:52,714 - DEBUG - STDOUT: Error in PlannerAgent.invoke: 'PlannerAgent' object has no attribute 'current_db_name'
+2025-05-08 15:43:52,982 - DEBUG - STDERR: Traceback (most recent call last):
+2025-05-08 15:43:52,984 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 922, in invoke
+    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)
+2025-05-08 15:43:52,985 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 633, in enhance_plan_with_metadata
+    "database": self.current_db_name,
+2025-05-08 15:43:52,989 - DEBUG - STDERR: AttributeError: 'PlannerAgent' object has no attribute 'current_db_name'
+2025-05-08 15:43:53,018 - DEBUG - STDOUT: PlannerAgent returned plan: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:52.992455",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:53,030 - DEBUG - STDOUT: Planner node output: current_agent=selector
+2025-05-08 15:43:53,031 - DEBUG - STDOUT: Planner response being sent to selector: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:52.992455",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:53,044 - DEBUG - STDOUT: ==== PLANNER NODE END ====
+2025-05-08 15:43:53,048 - INFO - Processing agent: planner
+2025-05-08 15:43:53,049 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:53,051 - DEBUG - Event keys: dict_keys(['planner'])
+2025-05-08 15:43:53,052 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner']
+2025-05-08 15:43:53,053 - DEBUG - planner response: {'error_type': 'NON_FATAL', 'error_message': "'PlannerAgent' object has no attribute 'current_db_name'", 'timestamp': '2025-05-08T15:43:52.992455', 'stack_trace': 'Traceback (most recent call last):\n  File "D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File "D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py", line 633, in enhance_plan_with_metadata\n    "database": self.current_db_name,\nAttributeError: \'PlannerAgent\' object has no attribute \'current_db_name\'\n', 'component': 'PlannerAgent', 'state': {}, 'recommendations': ['Review error logs for more details', 'Check state values for inconsistencies', 'Contact support if issue persists']}
+2025-05-08 15:43:53,059 - DEBUG - STDOUT: 
+==== SELECTOR NODE START ====
+2025-05-08 15:43:53,060 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:53,062 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner']
+2025-05-08 15:43:53,065 - DEBUG - STDOUT: Planner response received: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:52.992455",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:53,083 - DEBUG - STDOUT: Selector is processing planner response for question: 'list all interfaces'
+2025-05-08 15:43:53,087 - DEBUG - STDOUT: NOTE: The selector node is currently simplified and doesn't use LLM.
+2025-05-08 15:43:53,095 - DEBUG - STDOUT: It simply passes through to the SQLGenerator without making actual selections.
+2025-05-08 15:43:53,097 - DEBUG - STDOUT: Selector node output: current_agent=SQLGenerator
+2025-05-08 15:43:53,099 - DEBUG - STDOUT: Selector response being sent to SQLGenerator: {
+  "raw": "Selection completed",
+  "selected_schemas": {},
+  "selected_tool": "sql_query",
+  "selected_datasource": "information_schema.tables",
+  "information_needed": "Table listing",
+  "reason_for_selection": "Direct database query is the most efficient way to list tables",
+  "query_parameters": {
+    "columns": [
+      "table_schema",
+      "table_name"
+    ],
+    "filters": "table_type = 'BASE TABLE'"
+  }
+}
+2025-05-08 15:43:53,113 - DEBUG - STDOUT: ==== SELECTOR NODE END ====
+2025-05-08 15:43:53,119 - INFO - Processing agent: selector
+2025-05-08 15:43:53,120 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:53,121 - DEBUG - Event keys: dict_keys(['selector'])
+2025-05-08 15:43:53,126 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector']
+2025-05-08 15:43:53,128 - DEBUG - selector response: {'raw': 'Selection completed', 'selected_schemas': {}, 'selected_tool': 'sql_query', 'selected_datasource': 'information_schema.tables', 'information_needed': 'Table listing', 'reason_for_selection': 'Direct database query is the most efficient way to list tables', 'query_parameters': {'columns': ['table_schema', 'table_name'], 'filters': "table_type = 'BASE TABLE'"}}
+2025-05-08 15:43:53,130 - DEBUG - STDOUT: 
+==== SQL GENERATOR NODE START ====
+2025-05-08 15:43:53,132 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:53,133 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector']
+2025-05-08 15:43:53,135 - DEBUG - STDOUT: Selector response received: {
+  "raw": "Selection completed",
+  "selected_schemas": {},
+  "selected_tool": "sql_query",
+  "selected_datasource": "information_schema.tables",
+  "information_needed": "Table listing",
+  "reason_for_selection": "Direct database query is the most efficient way to list tables",
+  "query_parameters": {
+    "columns": [
+      "table_schema",
+      "table_name"
+    ],
+    "filters": "table_type = 'BASE TABLE'"
+  }
+}
+2025-05-08 15:43:53,145 - DEBUG - STDOUT: Created SQLGenerator with model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:53,152 - DEBUG - STDOUT: Invoking SQLGenerator with user_question: 'list all interfaces'
+2025-05-08 15:43:53,159 - DEBUG - STDOUT: SQLGenerator returned response: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:53.159703",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:53,179 - DEBUG - STDOUT: SQL Generator node output: current_agent=reviewer
+2025-05-08 15:43:53,183 - DEBUG - STDOUT: SQL query generated: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:53,193 - DEBUG - STDOUT: SQL Generator response being sent to reviewer: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:53.159703",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:53,228 - DEBUG - STDOUT: ==== SQL GENERATOR NODE END ====
+2025-05-08 15:43:53,233 - INFO - Processing agent: SQLGenerator
+2025-05-08 15:43:53,234 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:53,240 - DEBUG - Event keys: dict_keys(['SQLGenerator'])
+2025-05-08 15:43:53,243 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator']
+2025-05-08 15:43:53,243 - DEBUG - SQLGenerator response: {'sql_generator_response': {'sql_query': "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;", 'explanation': 'Query to discover interface-related columns across all schemas', 'validation_checks': ['Query syntax validated', 'Schema and table specified', 'Column list validated', 'WHERE clause included', 'Results limited for safety'], 'query_type': 'interface_list', 'estimated_complexity': 'LOW', 'required_indexes': [], 'metadata': {'generated_at': '2025-05-08 15:43:53.159703', 'validation_status': 'valid', 'has_limit': False, 'has_order': True}}}
+2025-05-08 15:43:53,251 - DEBUG - STDOUT: 
+==== REVIEWER NODE START ====
+2025-05-08 15:43:53,253 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:53,257 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator']
+2025-05-08 15:43:53,261 - DEBUG - STDOUT: SQL query to review: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:53,268 - DEBUG - STDOUT: SQLGenerator response received: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:53.159703",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:53,286 - DEBUG - STDOUT: Reviewer is analyzing SQL query for question: 'list all interfaces'
+2025-05-08 15:43:53,304 - DEBUG - STDOUT: Using LLM-based ReviewerAgent to analyze the SQL query
+2025-05-08 15:43:53,316 - DEBUG - STDOUT: Created ReviewerAgent with model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:53,327 - DEBUG - STDOUT: Invoking ReviewerAgent with user_question: 'list all interfaces' and sql_query: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:53,333 - DEBUG - STDOUT: ReviewerAgent returned review: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:53.332547",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:53,348 - DEBUG - STDOUT: Reviewer node output: current_agent=sql_executor
+2025-05-08 15:43:53,352 - DEBUG - STDOUT: Reviewer response being sent to sql_executor: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:53.332547",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:53,367 - DEBUG - STDOUT: ==== REVIEWER NODE END ====
+2025-05-08 15:43:53,370 - INFO - Processing agent: reviewer
+2025-05-08 15:43:53,373 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:53,375 - DEBUG - Event keys: dict_keys(['reviewer'])
+2025-05-08 15:43:53,376 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer']
+2025-05-08 15:43:53,378 - DEBUG - reviewer response: {'reviewer_response': {'is_correct': False, 'issues': ['No LIMIT clause'], 'suggestions': ['Add LIMIT clause to prevent large result sets', 'Ensure proper indexes exist for WHERE clause columns', 'Consider adding indexes on WHERE clause columns', 'Consider adding appropriate WHERE clauses', 'Use explicit column names instead of *', 'Add ORDER BY for consistent results'], 'explanation': 'Query validation found issues: No LIMIT clause', 'security_concerns': [], 'performance_impact': 'MEDIUM', 'confidence_score': 1.0, 'metadata': {'reviewed_at': '2025-05-08 15:43:53.332547', 'query_type': 'SELECT', 'has_joins': False, 'has_where': True, 'has_limit': False}}}
+2025-05-08 15:43:53,387 - DEBUG - STDOUT: 
+==== SQL EXECUTOR NODE START ====
+2025-05-08 15:43:53,393 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:53,395 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer']
+2025-05-08 15:43:53,397 - DEBUG - STDOUT: SQL query to execute: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:53,402 - DEBUG - STDOUT: Reviewer response received: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:53.332547",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:53,416 - DEBUG - STDOUT: SQL Executor is processing SQL query: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:53,420 - DEBUG - STDOUT: Executing SQL query against database: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:53,425 - DEBUG - STDOUT: NOTE: SQL Executor does not use LLM. It directly executes the SQL query against the database.
+2025-05-08 15:43:53,428 - DEBUG - STDOUT: Attempting database connection to localhost:5432/new as postgres
+2025-05-08 15:43:53,539 - DEBUG - STDOUT: Successfully connected to database new at localhost:5432
+2025-05-08 15:43:53,541 - DEBUG - STDOUT: Database is available
+2025-05-08 15:43:53,542 - DEBUG - STDOUT: Attempting database connection to localhost:5432/new as postgres
+2025-05-08 15:43:53,644 - DEBUG - STDOUT: Successfully connected to database new at localhost:5432
+2025-05-08 15:43:53,693 - DEBUG - STDOUT: Successfully executed query against actual database
+2025-05-08 15:43:53,694 - DEBUG - STDOUT: SQL query execution results: {
+  "column_names": [
+    "table_schema",
+    "table_name",
+    "column_name"
+  ],
+  "rows": [
+    [
+      "dev",
+      "abap_integration_engine_interfaces",
+      "abap_integration_engine_interface_destination"
+    ],
+    [
+      "dev",
+      "pro_agreements",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "interface_namespace"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "pro_integrated_configuration_interface_channel"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_rules",
+      "pro_integrated_configuration_interface_rules"
+    ],
+    [
+      "dev",
+      "pro_integrated_configurations",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_performance_data",
+      "interface_name"
+    ],
+    [
+      "dev",
+      "pro_performance_stats",
+      "interface_name"
+    ],
+    [
+      "dev",
+      "system_mappings",
+      "interface_pattern"
+    ]
+  ],
+  "row_count": 10,
+  "execution_time": 0.046313,
+  "query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+  "status": "success"
+}
+2025-05-08 15:43:53,716 - DEBUG - STDOUT: SQL Executor node output: current_agent=router
+2025-05-08 15:43:53,717 - DEBUG - STDOUT: SQL query results summary: status=success, rows=10
+2025-05-08 15:43:53,719 - DEBUG - STDOUT: ==== SQL EXECUTOR NODE END ====
+2025-05-08 15:43:53,722 - INFO - Processing agent: sql_executor
+2025-05-08 15:43:53,723 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:53,724 - DEBUG - Event keys: dict_keys(['sql_executor'])
+2025-05-08 15:43:53,725 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor']
+2025-05-08 15:43:53,727 - DEBUG - STDOUT: 
+==== ROUTER NODE START ====
+2025-05-08 15:43:53,729 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:53,730 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor']
+2025-05-08 15:43:53,733 - DEBUG - STDOUT: RouterAgent returned decision: {
+  "router_response": {
+    "route_to": "planner",
+    "reason": "Starting new workflow",
+    "feedback": "Initializing workflow with planner",
+    "state_updates": {
+      "workflow_started": true,
+      "start_time": "2025-05-08T15:43:53.733359"
+    },
+    "confidence_score": 1.0,
+    "requires_human_input": false
+  }
+}
+2025-05-08 15:43:53,740 - DEBUG - STDOUT: Route decision: planner
+2025-05-08 15:43:53,741 - DEBUG - STDOUT: Router node output: current_agent=planner
+2025-05-08 15:43:53,744 - DEBUG - STDOUT: Router response: {
+  "route_to": "planner",
+  "reason": "Starting new workflow",
+  "feedback": "Initializing workflow with planner",
+  "state_updates": {
+    "workflow_started": true,
+    "start_time": "2025-05-08T15:43:53.733359"
+  },
+  "confidence_score": 1.0,
+  "requires_human_input": false
+}
+2025-05-08 15:43:53,749 - DEBUG - STDOUT: ==== ROUTER NODE END ====
+2025-05-08 15:43:53,751 - DEBUG - STDOUT: ROUTE DECISION: planner -> to_planner
+2025-05-08 15:43:53,754 - INFO - Processing agent: router
+2025-05-08 15:43:53,756 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:53,757 - DEBUG - Event keys: dict_keys(['router'])
+2025-05-08 15:43:53,757 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router']
+2025-05-08 15:43:53,759 - DEBUG - router response: {'route_to': 'planner', 'reason': 'Starting new workflow', 'feedback': 'Initializing workflow with planner', 'state_updates': {'workflow_started': True, 'start_time': '2025-05-08T15:43:53.733359'}, 'confidence_score': 1.0, 'requires_human_input': False}
+2025-05-08 15:43:53,761 - DEBUG - STDOUT: 
+==== PLANNER NODE START ====
+2025-05-08 15:43:53,762 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:53,763 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router']
+2025-05-08 15:43:53,765 - DEBUG - STDOUT: Processing user question: 'list all interfaces'
+2025-05-08 15:43:53,767 - DEBUG - STDOUT: Error initializing database services: name 'DatabaseMetadataStore' is not defined
+2025-05-08 15:43:53,813 - DEBUG - STDERR: Traceback (most recent call last):
+2025-05-08 15:43:53,815 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 394, in __init__
+    self.metadata_store = DatabaseMetadataStore()
+2025-05-08 15:43:53,817 - DEBUG - STDERR: NameError: name 'DatabaseMetadataStore' is not defined
+2025-05-08 15:43:53,818 - DEBUG - STDOUT: Successfully initialized PlannerAgent with database capabilities using model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:53,820 - DEBUG - STDOUT: PlannerAgent is using LLM to analyze the query and determine the appropriate database tables and columns
+2025-05-08 15:43:53,823 - DEBUG - STDOUT: Invoking PlannerAgent with question: 'list all interfaces'
+2025-05-08 15:43:53,826 - DEBUG - STDOUT: Invoking Planner with question: list all interfaces
+2025-05-08 15:43:55,223 - DEBUG - STDOUT: Validation error: Invalid query_type: sql
+2025-05-08 15:43:55,225 - DEBUG - STDOUT: Initial validation failed, attempting recovery...
+2025-05-08 15:43:55,226 - DEBUG - STDOUT: Error in PlannerAgent.invoke: 'PlannerAgent' object has no attribute 'current_db_name'
+2025-05-08 15:43:55,242 - DEBUG - STDERR: Traceback (most recent call last):
+2025-05-08 15:43:55,242 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 922, in invoke
+    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)
+2025-05-08 15:43:55,249 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 633, in enhance_plan_with_metadata
+    "database": self.current_db_name,
+2025-05-08 15:43:55,251 - DEBUG - STDERR: AttributeError: 'PlannerAgent' object has no attribute 'current_db_name'
+2025-05-08 15:43:55,282 - DEBUG - STDOUT: PlannerAgent returned plan: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:55.255447",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:55,292 - DEBUG - STDOUT: Planner node output: current_agent=selector
+2025-05-08 15:43:55,293 - DEBUG - STDOUT: Planner response being sent to selector: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:55.255447",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:55,301 - DEBUG - STDOUT: ==== PLANNER NODE END ====
+2025-05-08 15:43:55,305 - INFO - Processing agent: planner
+2025-05-08 15:43:55,307 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:55,308 - DEBUG - Event keys: dict_keys(['planner'])
+2025-05-08 15:43:55,309 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner']
+2025-05-08 15:43:55,311 - DEBUG - planner response: {'error_type': 'NON_FATAL', 'error_message': "'PlannerAgent' object has no attribute 'current_db_name'", 'timestamp': '2025-05-08T15:43:55.255447', 'stack_trace': 'Traceback (most recent call last):\n  File "D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File "D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py", line 633, in enhance_plan_with_metadata\n    "database": self.current_db_name,\nAttributeError: \'PlannerAgent\' object has no attribute \'current_db_name\'\n', 'component': 'PlannerAgent', 'state': {}, 'recommendations': ['Review error logs for more details', 'Check state values for inconsistencies', 'Contact support if issue persists']}
+2025-05-08 15:43:55,315 - DEBUG - STDOUT: 
+==== SELECTOR NODE START ====
+2025-05-08 15:43:55,316 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:55,318 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner']
+2025-05-08 15:43:55,321 - DEBUG - STDOUT: Planner response received: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:55.255447",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:55,330 - DEBUG - STDOUT: Selector is processing planner response for question: 'list all interfaces'
+2025-05-08 15:43:55,332 - DEBUG - STDOUT: NOTE: The selector node is currently simplified and doesn't use LLM.
+2025-05-08 15:43:55,334 - DEBUG - STDOUT: It simply passes through to the SQLGenerator without making actual selections.
+2025-05-08 15:43:55,337 - DEBUG - STDOUT: Selector node output: current_agent=SQLGenerator
+2025-05-08 15:43:55,349 - DEBUG - STDOUT: Selector response being sent to SQLGenerator: {
+  "raw": "Selection completed",
+  "selected_schemas": {},
+  "selected_tool": "sql_query",
+  "selected_datasource": "information_schema.tables",
+  "information_needed": "Table listing",
+  "reason_for_selection": "Direct database query is the most efficient way to list tables",
+  "query_parameters": {
+    "columns": [
+      "table_schema",
+      "table_name"
+    ],
+    "filters": "table_type = 'BASE TABLE'"
+  }
+}
+2025-05-08 15:43:55,367 - DEBUG - STDOUT: ==== SELECTOR NODE END ====
+2025-05-08 15:43:55,382 - INFO - Processing agent: selector
+2025-05-08 15:43:55,385 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:55,387 - DEBUG - Event keys: dict_keys(['selector'])
+2025-05-08 15:43:55,390 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector']
+2025-05-08 15:43:55,394 - DEBUG - selector response: {'raw': 'Selection completed', 'selected_schemas': {}, 'selected_tool': 'sql_query', 'selected_datasource': 'information_schema.tables', 'information_needed': 'Table listing', 'reason_for_selection': 'Direct database query is the most efficient way to list tables', 'query_parameters': {'columns': ['table_schema', 'table_name'], 'filters': "table_type = 'BASE TABLE'"}}
+2025-05-08 15:43:55,399 - DEBUG - STDOUT: 
+==== SQL GENERATOR NODE START ====
+2025-05-08 15:43:55,414 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:55,427 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector']
+2025-05-08 15:43:55,441 - DEBUG - STDOUT: Selector response received: {
+  "raw": "Selection completed",
+  "selected_schemas": {},
+  "selected_tool": "sql_query",
+  "selected_datasource": "information_schema.tables",
+  "information_needed": "Table listing",
+  "reason_for_selection": "Direct database query is the most efficient way to list tables",
+  "query_parameters": {
+    "columns": [
+      "table_schema",
+      "table_name"
+    ],
+    "filters": "table_type = 'BASE TABLE'"
+  }
+}
+2025-05-08 15:43:55,466 - DEBUG - STDOUT: Created SQLGenerator with model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:55,479 - DEBUG - STDOUT: Invoking SQLGenerator with user_question: 'list all interfaces'
+2025-05-08 15:43:55,561 - DEBUG - STDOUT: SQLGenerator returned response: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:55.561105",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:55,578 - DEBUG - STDOUT: SQL Generator node output: current_agent=reviewer
+2025-05-08 15:43:55,584 - DEBUG - STDOUT: SQL query generated: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:55,600 - DEBUG - STDOUT: SQL Generator response being sent to reviewer: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:55.561105",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:55,616 - DEBUG - STDOUT: ==== SQL GENERATOR NODE END ====
+2025-05-08 15:43:55,634 - INFO - Processing agent: SQLGenerator
+2025-05-08 15:43:55,641 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:55,644 - DEBUG - Event keys: dict_keys(['SQLGenerator'])
+2025-05-08 15:43:55,649 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator']
+2025-05-08 15:43:55,655 - DEBUG - SQLGenerator response: {'sql_generator_response': {'sql_query': "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;", 'explanation': 'Query to discover interface-related columns across all schemas', 'validation_checks': ['Query syntax validated', 'Schema and table specified', 'Column list validated', 'WHERE clause included', 'Results limited for safety'], 'query_type': 'interface_list', 'estimated_complexity': 'LOW', 'required_indexes': [], 'metadata': {'generated_at': '2025-05-08 15:43:55.561105', 'validation_status': 'valid', 'has_limit': False, 'has_order': True}}}
+2025-05-08 15:43:55,661 - DEBUG - STDOUT: 
+==== REVIEWER NODE START ====
+2025-05-08 15:43:55,672 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:55,674 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator']
+2025-05-08 15:43:55,676 - DEBUG - STDOUT: SQL query to review: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:55,682 - DEBUG - STDOUT: SQLGenerator response received: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:55.561105",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:55,701 - DEBUG - STDOUT: Reviewer is analyzing SQL query for question: 'list all interfaces'
+2025-05-08 15:43:55,706 - DEBUG - STDOUT: Using LLM-based ReviewerAgent to analyze the SQL query
+2025-05-08 15:43:55,710 - DEBUG - STDOUT: Created ReviewerAgent with model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:55,711 - DEBUG - STDOUT: Invoking ReviewerAgent with user_question: 'list all interfaces' and sql_query: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:55,723 - DEBUG - STDOUT: ReviewerAgent returned review: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:55.722920",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:55,740 - DEBUG - STDOUT: Reviewer node output: current_agent=sql_executor
+2025-05-08 15:43:55,748 - DEBUG - STDOUT: Reviewer response being sent to sql_executor: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:55.722920",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:55,765 - DEBUG - STDOUT: ==== REVIEWER NODE END ====
+2025-05-08 15:43:55,774 - INFO - Processing agent: reviewer
+2025-05-08 15:43:55,782 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:55,784 - DEBUG - Event keys: dict_keys(['reviewer'])
+2025-05-08 15:43:55,792 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer']
+2025-05-08 15:43:55,794 - DEBUG - reviewer response: {'reviewer_response': {'is_correct': False, 'issues': ['No LIMIT clause'], 'suggestions': ['Add LIMIT clause to prevent large result sets', 'Ensure proper indexes exist for WHERE clause columns', 'Consider adding indexes on WHERE clause columns', 'Consider adding appropriate WHERE clauses', 'Use explicit column names instead of *', 'Add ORDER BY for consistent results'], 'explanation': 'Query validation found issues: No LIMIT clause', 'security_concerns': [], 'performance_impact': 'MEDIUM', 'confidence_score': 1.0, 'metadata': {'reviewed_at': '2025-05-08 15:43:55.722920', 'query_type': 'SELECT', 'has_joins': False, 'has_where': True, 'has_limit': False}}}
+2025-05-08 15:43:55,798 - DEBUG - STDOUT: 
+==== SQL EXECUTOR NODE START ====
+2025-05-08 15:43:55,801 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:55,809 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer']
+2025-05-08 15:43:55,817 - DEBUG - STDOUT: SQL query to execute: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:55,830 - DEBUG - STDOUT: Reviewer response received: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:55.722920",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:55,867 - DEBUG - STDOUT: SQL Executor is processing SQL query: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:55,891 - DEBUG - STDOUT: Executing SQL query against database: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:55,906 - DEBUG - STDOUT: NOTE: SQL Executor does not use LLM. It directly executes the SQL query against the database.
+2025-05-08 15:43:55,913 - DEBUG - STDOUT: Attempting database connection to localhost:5432/new as postgres
+2025-05-08 15:43:56,048 - DEBUG - STDOUT: Successfully connected to database new at localhost:5432
+2025-05-08 15:43:56,051 - DEBUG - STDOUT: Database is available
+2025-05-08 15:43:56,053 - DEBUG - STDOUT: Attempting database connection to localhost:5432/new as postgres
+2025-05-08 15:43:56,177 - DEBUG - STDOUT: Successfully connected to database new at localhost:5432
+2025-05-08 15:43:56,228 - DEBUG - STDOUT: Successfully executed query against actual database
+2025-05-08 15:43:56,230 - DEBUG - STDOUT: SQL query execution results: {
+  "column_names": [
+    "table_schema",
+    "table_name",
+    "column_name"
+  ],
+  "rows": [
+    [
+      "dev",
+      "abap_integration_engine_interfaces",
+      "abap_integration_engine_interface_destination"
+    ],
+    [
+      "dev",
+      "pro_agreements",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "interface_namespace"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "pro_integrated_configuration_interface_channel"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_rules",
+      "pro_integrated_configuration_interface_rules"
+    ],
+    [
+      "dev",
+      "pro_integrated_configurations",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_performance_data",
+      "interface_name"
+    ],
+    [
+      "dev",
+      "pro_performance_stats",
+      "interface_name"
+    ],
+    [
+      "dev",
+      "system_mappings",
+      "interface_pattern"
+    ]
+  ],
+  "row_count": 10,
+  "execution_time": 0.050274,
+  "query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+  "status": "success"
+}
+2025-05-08 15:43:56,254 - DEBUG - STDOUT: SQL Executor node output: current_agent=router
+2025-05-08 15:43:56,256 - DEBUG - STDOUT: SQL query results summary: status=success, rows=10
+2025-05-08 15:43:56,257 - DEBUG - STDOUT: ==== SQL EXECUTOR NODE END ====
+2025-05-08 15:43:56,260 - INFO - Processing agent: sql_executor
+2025-05-08 15:43:56,261 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:56,262 - DEBUG - Event keys: dict_keys(['sql_executor'])
+2025-05-08 15:43:56,263 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor']
+2025-05-08 15:43:56,264 - DEBUG - STDOUT: 
+==== ROUTER NODE START ====
+2025-05-08 15:43:56,265 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:56,266 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor']
+2025-05-08 15:43:56,271 - DEBUG - STDOUT: RouterAgent returned decision: {
+  "router_response": {
+    "route_to": "planner",
+    "reason": "Starting new workflow",
+    "feedback": "Initializing workflow with planner",
+    "state_updates": {
+      "workflow_started": true,
+      "start_time": "2025-05-08T15:43:56.271574"
+    },
+    "confidence_score": 1.0,
+    "requires_human_input": false
+  }
+}
+2025-05-08 15:43:56,276 - DEBUG - STDOUT: Route decision: planner
+2025-05-08 15:43:56,277 - DEBUG - STDOUT: Router node output: current_agent=planner
+2025-05-08 15:43:56,278 - DEBUG - STDOUT: Router response: {
+  "route_to": "planner",
+  "reason": "Starting new workflow",
+  "feedback": "Initializing workflow with planner",
+  "state_updates": {
+    "workflow_started": true,
+    "start_time": "2025-05-08T15:43:56.271574"
+  },
+  "confidence_score": 1.0,
+  "requires_human_input": false
+}
+2025-05-08 15:43:56,287 - DEBUG - STDOUT: ==== ROUTER NODE END ====
+2025-05-08 15:43:56,289 - DEBUG - STDOUT: ROUTE DECISION: planner -> to_planner
+2025-05-08 15:43:56,291 - INFO - Processing agent: router
+2025-05-08 15:43:56,292 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:56,293 - DEBUG - Event keys: dict_keys(['router'])
+2025-05-08 15:43:56,294 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router']
+2025-05-08 15:43:56,295 - DEBUG - router response: {'route_to': 'planner', 'reason': 'Starting new workflow', 'feedback': 'Initializing workflow with planner', 'state_updates': {'workflow_started': True, 'start_time': '2025-05-08T15:43:56.271574'}, 'confidence_score': 1.0, 'requires_human_input': False}
+2025-05-08 15:43:56,296 - DEBUG - STDOUT: 
+==== PLANNER NODE START ====
+2025-05-08 15:43:56,297 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:56,298 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router']
+2025-05-08 15:43:56,300 - DEBUG - STDOUT: Processing user question: 'list all interfaces'
+2025-05-08 15:43:56,302 - DEBUG - STDOUT: Error initializing database services: name 'DatabaseMetadataStore' is not defined
+2025-05-08 15:43:56,359 - DEBUG - STDERR: Traceback (most recent call last):
+2025-05-08 15:43:56,360 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 394, in __init__
+    self.metadata_store = DatabaseMetadataStore()
+2025-05-08 15:43:56,362 - DEBUG - STDERR: NameError: name 'DatabaseMetadataStore' is not defined
+2025-05-08 15:43:56,363 - DEBUG - STDOUT: Successfully initialized PlannerAgent with database capabilities using model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:56,364 - DEBUG - STDOUT: PlannerAgent is using LLM to analyze the query and determine the appropriate database tables and columns
+2025-05-08 15:43:56,396 - DEBUG - STDOUT: Invoking PlannerAgent with question: 'list all interfaces'
+2025-05-08 15:43:56,449 - DEBUG - STDOUT: Invoking Planner with question: list all interfaces
+2025-05-08 15:43:57,862 - DEBUG - STDOUT: Validation error: Invalid query_type: sql
+2025-05-08 15:43:57,862 - DEBUG - STDOUT: Initial validation failed, attempting recovery...
+2025-05-08 15:43:57,864 - DEBUG - STDOUT: Error in PlannerAgent.invoke: 'PlannerAgent' object has no attribute 'current_db_name'
+2025-05-08 15:43:57,885 - DEBUG - STDERR: Traceback (most recent call last):
+2025-05-08 15:43:57,887 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 922, in invoke
+    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)
+2025-05-08 15:43:57,889 - DEBUG - STDERR:   File "D:\versa\project_Files\working\streamlitapp_30.04.2025\streamlit_app\agents\agents.py", line 633, in enhance_plan_with_metadata
+    "database": self.current_db_name,
+2025-05-08 15:43:57,891 - DEBUG - STDERR: AttributeError: 'PlannerAgent' object has no attribute 'current_db_name'
+2025-05-08 15:43:57,916 - DEBUG - STDOUT: PlannerAgent returned plan: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:57.893513",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:57,924 - DEBUG - STDOUT: Planner node output: current_agent=selector
+2025-05-08 15:43:57,926 - DEBUG - STDOUT: Planner response being sent to selector: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:57.893513",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:57,936 - DEBUG - STDOUT: ==== PLANNER NODE END ====
+2025-05-08 15:43:57,939 - INFO - Processing agent: planner
+2025-05-08 15:43:57,940 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:57,941 - DEBUG - Event keys: dict_keys(['planner'])
+2025-05-08 15:43:57,941 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner']
+2025-05-08 15:43:57,943 - DEBUG - planner response: {'error_type': 'NON_FATAL', 'error_message': "'PlannerAgent' object has no attribute 'current_db_name'", 'timestamp': '2025-05-08T15:43:57.893513', 'stack_trace': 'Traceback (most recent call last):\n  File "D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File "D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py", line 633, in enhance_plan_with_metadata\n    "database": self.current_db_name,\nAttributeError: \'PlannerAgent\' object has no attribute \'current_db_name\'\n', 'component': 'PlannerAgent', 'state': {}, 'recommendations': ['Review error logs for more details', 'Check state values for inconsistencies', 'Contact support if issue persists']}
+2025-05-08 15:43:57,947 - DEBUG - STDOUT: 
+==== SELECTOR NODE START ====
+2025-05-08 15:43:57,948 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:57,949 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner']
+2025-05-08 15:43:57,953 - DEBUG - STDOUT: Planner response received: {
+  "error_type": "NON_FATAL",
+  "error_message": "'PlannerAgent' object has no attribute 'current_db_name'",
+  "timestamp": "2025-05-08T15:43:57.893513",
+  "stack_trace": "Traceback (most recent call last):\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 922, in invoke\n    enhanced_response = self.enhance_plan_with_metadata(validated_response, user_question)\n  File \"D:\\versa\\project_Files\\working\\streamlitapp_30.04.2025\\streamlit_app\\agents\\agents.py\", line 633, in enhance_plan_with_metadata\n    \"database\": self.current_db_name,\nAttributeError: 'PlannerAgent' object has no attribute 'current_db_name'\n",
+  "component": "PlannerAgent",
+  "state": {},
+  "recommendations": [
+    "Review error logs for more details",
+    "Check state values for inconsistencies",
+    "Contact support if issue persists"
+  ]
+}
+2025-05-08 15:43:57,961 - DEBUG - STDOUT: Selector is processing planner response for question: 'list all interfaces'
+2025-05-08 15:43:57,963 - DEBUG - STDOUT: NOTE: The selector node is currently simplified and doesn't use LLM.
+2025-05-08 15:43:57,965 - DEBUG - STDOUT: It simply passes through to the SQLGenerator without making actual selections.
+2025-05-08 15:43:57,966 - DEBUG - STDOUT: Selector node output: current_agent=SQLGenerator
+2025-05-08 15:43:57,969 - DEBUG - STDOUT: Selector response being sent to SQLGenerator: {
+  "raw": "Selection completed",
+  "selected_schemas": {},
+  "selected_tool": "sql_query",
+  "selected_datasource": "information_schema.tables",
+  "information_needed": "Table listing",
+  "reason_for_selection": "Direct database query is the most efficient way to list tables",
+  "query_parameters": {
+    "columns": [
+      "table_schema",
+      "table_name"
+    ],
+    "filters": "table_type = 'BASE TABLE'"
+  }
+}
+2025-05-08 15:43:57,975 - DEBUG - STDOUT: ==== SELECTOR NODE END ====
+2025-05-08 15:43:57,977 - INFO - Processing agent: selector
+2025-05-08 15:43:57,978 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:57,982 - DEBUG - Event keys: dict_keys(['selector'])
+2025-05-08 15:43:57,988 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector']
+2025-05-08 15:43:57,992 - DEBUG - selector response: {'raw': 'Selection completed', 'selected_schemas': {}, 'selected_tool': 'sql_query', 'selected_datasource': 'information_schema.tables', 'information_needed': 'Table listing', 'reason_for_selection': 'Direct database query is the most efficient way to list tables', 'query_parameters': {'columns': ['table_schema', 'table_name'], 'filters': "table_type = 'BASE TABLE'"}}
+2025-05-08 15:43:57,997 - DEBUG - STDOUT: 
+==== SQL GENERATOR NODE START ====
+2025-05-08 15:43:57,999 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:58,001 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector']
+2025-05-08 15:43:58,008 - DEBUG - STDOUT: Selector response received: {
+  "raw": "Selection completed",
+  "selected_schemas": {},
+  "selected_tool": "sql_query",
+  "selected_datasource": "information_schema.tables",
+  "information_needed": "Table listing",
+  "reason_for_selection": "Direct database query is the most efficient way to list tables",
+  "query_parameters": {
+    "columns": [
+      "table_schema",
+      "table_name"
+    ],
+    "filters": "table_type = 'BASE TABLE'"
+  }
+}
+2025-05-08 15:43:58,024 - DEBUG - STDOUT: Created SQLGenerator with model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:58,028 - DEBUG - STDOUT: Invoking SQLGenerator with user_question: 'list all interfaces'
+2025-05-08 15:43:58,032 - DEBUG - STDOUT: SQLGenerator returned response: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:58.031740",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:58,046 - DEBUG - STDOUT: SQL Generator node output: current_agent=reviewer
+2025-05-08 15:43:58,053 - DEBUG - STDOUT: SQL query generated: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:58,058 - DEBUG - STDOUT: SQL Generator response being sent to reviewer: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:58.031740",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:58,072 - DEBUG - STDOUT: ==== SQL GENERATOR NODE END ====
+2025-05-08 15:43:58,083 - INFO - Processing agent: SQLGenerator
+2025-05-08 15:43:58,089 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:58,090 - DEBUG - Event keys: dict_keys(['SQLGenerator'])
+2025-05-08 15:43:58,091 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator']
+2025-05-08 15:43:58,093 - DEBUG - SQLGenerator response: {'sql_generator_response': {'sql_query': "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;", 'explanation': 'Query to discover interface-related columns across all schemas', 'validation_checks': ['Query syntax validated', 'Schema and table specified', 'Column list validated', 'WHERE clause included', 'Results limited for safety'], 'query_type': 'interface_list', 'estimated_complexity': 'LOW', 'required_indexes': [], 'metadata': {'generated_at': '2025-05-08 15:43:58.031740', 'validation_status': 'valid', 'has_limit': False, 'has_order': True}}}
+2025-05-08 15:43:58,096 - DEBUG - STDOUT: 
+==== REVIEWER NODE START ====
+2025-05-08 15:43:58,098 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:58,100 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator']
+2025-05-08 15:43:58,106 - DEBUG - STDOUT: SQL query to review: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:58,111 - DEBUG - STDOUT: SQLGenerator response received: {
+  "sql_generator_response": {
+    "sql_query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+    "explanation": "Query to discover interface-related columns across all schemas",
+    "validation_checks": [
+      "Query syntax validated",
+      "Schema and table specified",
+      "Column list validated",
+      "WHERE clause included",
+      "Results limited for safety"
+    ],
+    "query_type": "interface_list",
+    "estimated_complexity": "LOW",
+    "required_indexes": [],
+    "metadata": {
+      "generated_at": "2025-05-08 15:43:58.031740",
+      "validation_status": "valid",
+      "has_limit": false,
+      "has_order": true
+    }
+  }
+}
+2025-05-08 15:43:58,127 - DEBUG - STDOUT: Reviewer is analyzing SQL query for question: 'list all interfaces'
+2025-05-08 15:43:58,129 - DEBUG - STDOUT: Using LLM-based ReviewerAgent to analyze the SQL query
+2025-05-08 15:43:58,132 - DEBUG - STDOUT: Created ReviewerAgent with model=chatgpt-4o-latest, server=openai
+2025-05-08 15:43:58,137 - DEBUG - STDOUT: Invoking ReviewerAgent with user_question: 'list all interfaces' and sql_query: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:58,141 - DEBUG - STDOUT: ReviewerAgent returned review: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:58.141794",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:58,156 - DEBUG - STDOUT: Reviewer node output: current_agent=sql_executor
+2025-05-08 15:43:58,158 - DEBUG - STDOUT: Reviewer response being sent to sql_executor: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:58.141794",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:58,171 - DEBUG - STDOUT: ==== REVIEWER NODE END ====
+2025-05-08 15:43:58,174 - INFO - Processing agent: reviewer
+2025-05-08 15:43:58,175 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:58,179 - DEBUG - Event keys: dict_keys(['reviewer'])
+2025-05-08 15:43:58,188 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer']
+2025-05-08 15:43:58,192 - DEBUG - reviewer response: {'reviewer_response': {'is_correct': False, 'issues': ['No LIMIT clause'], 'suggestions': ['Add LIMIT clause to prevent large result sets', 'Ensure proper indexes exist for WHERE clause columns', 'Consider adding indexes on WHERE clause columns', 'Consider adding appropriate WHERE clauses', 'Use explicit column names instead of *', 'Add ORDER BY for consistent results'], 'explanation': 'Query validation found issues: No LIMIT clause', 'security_concerns': [], 'performance_impact': 'MEDIUM', 'confidence_score': 1.0, 'metadata': {'reviewed_at': '2025-05-08 15:43:58.141794', 'query_type': 'SELECT', 'has_joins': False, 'has_where': True, 'has_limit': False}}}
+2025-05-08 15:43:58,208 - DEBUG - STDOUT: 
+==== SQL EXECUTOR NODE START ====
+2025-05-08 15:43:58,212 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:58,215 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer']
+2025-05-08 15:43:58,224 - DEBUG - STDOUT: SQL query to execute: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
+2025-05-08 15:43:58,245 - DEBUG - STDOUT: Reviewer response received: {
+  "reviewer_response": {
+    "is_correct": false,
+    "issues": [
+      "No LIMIT clause"
+    ],
+    "suggestions": [
+      "Add LIMIT clause to prevent large result sets",
+      "Ensure proper indexes exist for WHERE clause columns",
+      "Consider adding indexes on WHERE clause columns",
+      "Consider adding appropriate WHERE clauses",
+      "Use explicit column names instead of *",
+      "Add ORDER BY for consistent results"
+    ],
+    "explanation": "Query validation found issues: No LIMIT clause",
+    "security_concerns": [],
+    "performance_impact": "MEDIUM",
+    "confidence_score": 1.0,
+    "metadata": {
+      "reviewed_at": "2025-05-08 15:43:58.141794",
+      "query_type": "SELECT",
+      "has_joins": false,
+      "has_where": true,
+      "has_limit": false
+    }
+  }
+}
+2025-05-08 15:43:58,277 - DEBUG - STDOUT: SQL Executor is processing SQL query: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:58,311 - DEBUG - STDOUT: Executing SQL query against database: 'SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;'
+2025-05-08 15:43:58,328 - DEBUG - STDOUT: NOTE: SQL Executor does not use LLM. It directly executes the SQL query against the database.
+2025-05-08 15:43:58,339 - DEBUG - STDOUT: Attempting database connection to localhost:5432/new as postgres
+2025-05-08 15:43:58,500 - DEBUG - STDOUT: Successfully connected to database new at localhost:5432
+2025-05-08 15:43:58,504 - DEBUG - STDOUT: Database is available
+2025-05-08 15:43:58,505 - DEBUG - STDOUT: Attempting database connection to localhost:5432/new as postgres
+2025-05-08 15:43:58,693 - DEBUG - STDOUT: Successfully connected to database new at localhost:5432
+2025-05-08 15:43:58,735 - DEBUG - STDOUT: Successfully executed query against actual database
+2025-05-08 15:43:58,739 - DEBUG - STDOUT: SQL query execution results: {
+  "column_names": [
+    "table_schema",
+    "table_name",
+    "column_name"
+  ],
+  "rows": [
+    [
+      "dev",
+      "abap_integration_engine_interfaces",
+      "abap_integration_engine_interface_destination"
+    ],
+    [
+      "dev",
+      "pro_agreements",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "interface_namespace"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_interfaces",
+      "pro_integrated_configuration_interface_channel"
+    ],
+    [
+      "dev",
+      "pro_integrated_configuration_rules",
+      "pro_integrated_configuration_interface_rules"
+    ],
+    [
+      "dev",
+      "pro_integrated_configurations",
+      "interface"
+    ],
+    [
+      "dev",
+      "pro_performance_data",
+      "interface_name"
+    ],
+    [
+      "dev",
+      "pro_performance_stats",
+      "interface_name"
+    ],
+    [
+      "dev",
+      "system_mappings",
+      "interface_pattern"
+    ]
+  ],
+  "row_count": 10,
+  "execution_time": 0.040447,
+  "query": "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;",
+  "status": "success"
+}
+2025-05-08 15:43:58,761 - DEBUG - STDOUT: SQL Executor node output: current_agent=router
+2025-05-08 15:43:58,762 - DEBUG - STDOUT: SQL query results summary: status=success, rows=10
+2025-05-08 15:43:58,763 - DEBUG - STDOUT: ==== SQL EXECUTOR NODE END ====
+2025-05-08 15:43:58,767 - INFO - Processing agent: sql_executor
+2025-05-08 15:43:58,768 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:58,769 - DEBUG - Event keys: dict_keys(['sql_executor'])
+2025-05-08 15:43:58,771 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor']
+2025-05-08 15:43:58,772 - DEBUG - STDOUT: 
+==== ROUTER NODE START ====
+2025-05-08 15:43:58,774 - DEBUG - STDOUT: Input state: user_question=list all interfaces
+2025-05-08 15:43:58,776 - DEBUG - STDOUT: Current execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor']
+2025-05-08 15:43:58,779 - DEBUG - STDOUT: RouterAgent returned decision: {
+  "router_response": {
+    "route_to": "planner",
+    "reason": "Starting new workflow",
+    "feedback": "Initializing workflow with planner",
+    "state_updates": {
+      "workflow_started": true,
+      "start_time": "2025-05-08T15:43:58.779580"
+    },
+    "confidence_score": 1.0,
+    "requires_human_input": false
+  }
+}
+2025-05-08 15:43:58,786 - DEBUG - STDOUT: Route decision: planner
+2025-05-08 15:43:58,787 - DEBUG - STDOUT: Router node output: current_agent=planner
+2025-05-08 15:43:58,788 - DEBUG - STDOUT: Router response: {
+  "route_to": "planner",
+  "reason": "Starting new workflow",
+  "feedback": "Initializing workflow with planner",
+  "state_updates": {
+    "workflow_started": true,
+    "start_time": "2025-05-08T15:43:58.779580"
+  },
+  "confidence_score": 1.0,
+  "requires_human_input": false
+}
+2025-05-08 15:43:58,792 - DEBUG - STDOUT: ==== ROUTER NODE END ====
+2025-05-08 15:43:58,794 - DEBUG - STDOUT: RECURSION GUARD: Node planner visited 4 times. Forcing to end.
+2025-05-08 15:43:58,798 - INFO - Processing agent: router
+2025-05-08 15:43:58,799 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:58,799 - DEBUG - Event keys: dict_keys(['router'])
+2025-05-08 15:43:58,801 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router']
+2025-05-08 15:43:58,803 - DEBUG - router response: {'route_to': 'planner', 'reason': 'Starting new workflow', 'feedback': 'Initializing workflow with planner', 'state_updates': {'workflow_started': True, 'start_time': '2025-05-08T15:43:58.779580'}, 'confidence_score': 1.0, 'requires_human_input': False}
+2025-05-08 15:43:58,805 - DEBUG - STDOUT: 
+==== END NODE START ====
+2025-05-08 15:43:58,806 - DEBUG - STDOUT: Processing final state
+2025-05-08 15:43:58,807 - DEBUG - STDOUT: Creating default final report
+2025-05-08 15:43:58,809 - DEBUG - STDOUT: Final report prepared successfully
+2025-05-08 15:43:58,810 - DEBUG - STDOUT: ==== END NODE END ====
+2025-05-08 15:43:58,814 - INFO - Processing agent: end
+2025-05-08 15:43:58,814 - DEBUG - Event type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:58,815 - DEBUG - Event keys: dict_keys(['end'])
+2025-05-08 15:43:58,816 - DEBUG - Execution path: ['planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router', 'planner', 'selector', 'SQLGenerator', 'reviewer', 'sql_executor', 'router']
+2025-05-08 15:43:58,821 - DEBUG - Final state type: <class 'langgraph.pregel.io.AddableUpdatesDict'>
+2025-05-08 15:43:58,822 - DEBUG - Final state keys: dict_keys(['end'])
+2025-05-08 15:43:58,823 - DEBUG - End node type: <class 'dict'>
+2025-05-08 15:43:58,823 - DEBUG - End node keys: dict_keys(['current_agent', 'user_question', 'selected_schema', 'tool_responses', 'execution_path', 'errors', 'is_error_state', 'planner_response', 'selector_response', 'SQLGenerator_response', 'reviewer_response', 'router_response', 'final_report_response', 'final_report_data', 'schemas', 'sql_query', 'sql_query_results', 'previous_selections', 'previous_reports', 'start_time', 'retry_counts', 'last_successful_state', 'end_chain', 'current_node', 'iteration_count', 'error_count', 'last_error', 'last_success', 'metadata', 'workflow_completed', 'completion_timestamp'])
+2025-05-08 15:43:58,826 - INFO - SQL query results: {'column_names': ['table_schema', 'table_name', 'column_name'], 'rows': [('dev', 'abap_integration_engine_interfaces', 'abap_integration_engine_interface_destination'), ('dev', 'pro_agreements', 'interface'), ('dev', 'pro_integrated_configuration_interfaces', 'interface'), ('dev', 'pro_integrated_configuration_interfaces', 'interface_namespace'), ('dev', 'pro_integrated_configuration_interfaces', 'pro_integrated_configuration_interface_channel'), ('dev', 'pro_integrated_configuration_rules', 'pro_integrated_configuration_interface_rules'), ('dev', 'pro_integrated_configurations', 'interface'), ('dev', 'pro_performance_data', 'interface_name'), ('dev', 'pro_performance_stats', 'interface_name'), ('dev', 'system_mappings', 'interface_pattern')], 'row_count': 10, 'execution_time': 0.040447, 'query': "SELECT DISTINCT table_schema, table_name, column_name \n                FROM information_schema.columns \n                WHERE column_name ILIKE '%interface%'\n                AND table_schema NOT IN ('pg_catalog', 'information_schema')\n                ORDER BY table_schema, table_name;", 'status': 'success'}
+2025-05-08 15:43:58,830 - INFO - SQL query: SELECT DISTINCT table_schema, table_name, column_name 
+                FROM information_schema.columns 
+                WHERE column_name ILIKE '%interface%'
+                AND table_schema NOT IN ('pg_catalog', 'information_schema')
+                ORDER BY table_schema, table_name;
