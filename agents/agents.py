@@ -13,6 +13,7 @@ from models.groq_models import GroqModel, GroqJSONModel
 
 # Database and tool imports
 from tools.datasource_tool import get_db_connection, InventoryTypeValuesToNames
+from database.discovery import DatabaseDiscoveryService
 
 # State management imports
 from states.state import (
@@ -380,423 +381,31 @@ class PlannerAgent(Agent):
             guided_json=planner_guided_json
         )
 
-        # Initialize database context
-        self.db_context = {
-            "current_db": None,
-            "current_schema": None,
-            "discovered_schemas": set(),
-            "interface_tables": {},
-            "last_discovery": None
-        }
-
-        # Initialize metadata store and discovery service
+        # Initialize the Database Discovery Service and load the schema.
+        print("Initializing PlannerAgent and loading database schema...")
         try:
-            self.metadata_store = DatabaseMetadataStore()
-            self.discovery_service = DatabaseDiscoveryService(self.metadata_store)
-            print("Successfully initialized database metadata store and discovery service")
-            
-            # Perform initial database discovery
-            self._initialize_database_context()
+            db_params = self.get_db_connection_params()
+            discovery_service = DatabaseDiscoveryService(db_params)
+            self.schema_map = discovery_service.discover_schema()
+            print("Database schema loaded successfully.")
         except Exception as e:
-            print(f"Error initializing database services: {e}")
+            print(f"CRITICAL: Failed to load database schema: {e}")
             traceback.print_exc()
-
-    def _initialize_database_context(self):
-        """Initialize database context with proactive discovery."""
-        try:
-            # Get connection parameters
-            params = self.get_db_connection_params()
-            
-            # Set current database
-            self.db_context["current_db"] = params["db_name"]
-            
-            # Load existing metadata
-            self.metadata_store.load_metadata(params["db_name"])
-            self.metadata_store.load_change_log(params["db_name"])
-            
-            # Discover schemas if metadata is stale
-            if not self.metadata_store.is_metadata_fresh(params["db_name"]):
-                schemas = self.discovery_service.discover_schemas(
-                    db_name=params["db_name"],
-                    user=params["user"],
-                    password=params["password"],
-                    host=params["host"],
-                    port=params["port"],
-                    force_refresh=True
-                )
-                self.db_context["discovered_schemas"].update(schemas)
-                
-                # Pre-discover interface tables
-                self._discover_interface_tables()
-            
-            self.db_context["last_discovery"] = datetime.now()
-            print(f"Database context initialized successfully for {params['db_name']}")
-            
-        except Exception as e:
-            print(f"Error initializing database context: {e}")
-            traceback.print_exc()
-
-    def _discover_interface_tables(self):
-        """Discover tables containing interface-related columns."""
-        try:
-            params = self.get_db_connection_params()
-            
-            # Query for interface-related tables
-            conn, cursor = self.discovery_service.get_connection(
-                db_name=params["db_name"],
-                user=params["user"],
-                password=params["password"],
-                host=params["host"],
-                port=params["port"]
-            )
-            
-            # Search for interface-related columns across all schemas
-            cursor.execute("""
-                SELECT table_schema, table_name, column_name
-                FROM information_schema.columns
-                WHERE column_name ILIKE '%interface%'
-                AND table_schema NOT IN ('pg_catalog', 'information_schema')
-                ORDER BY table_schema, table_name;
-            """)
-            
-            interface_tables = {}
-            for schema, table, column in cursor.fetchall():
-                if schema not in interface_tables:
-                    interface_tables[schema] = {}
-                if table not in interface_tables[schema]:
-                    interface_tables[schema][table] = []
-                interface_tables[schema][table].append(column)
-            
-            self.db_context["interface_tables"] = interface_tables
-            print(f"Discovered interface tables: {json.dumps(interface_tables, indent=2)}")
-            
-            cursor.close()
-            conn.close()
-            
-        except Exception as e:
-            print(f"Error discovering interface tables: {e}")
-            traceback.print_exc()
-
-    def analyze_query_context(self, user_question):
-        """Analyze the query to determine database context with enhanced understanding."""
-        context = {
-            "query_type": None,
-            "target_schema": None,
-            "target_table": None,
-            "is_interface_query": False,
-            "is_metadata_query": False,
-            "conditions": [],
-            "required_columns": []
-        }
-        
-        # Normalize question for analysis
-        question = user_question.lower().strip()
-        
-        # Check for interface-related queries
-        if "interface" in question:
-            context["is_interface_query"] = True
-            context["query_type"] = "SELECT"
-            # Check discovered interface tables
-            if hasattr(self, 'db_context') and self.db_context.get("interface_tables"):
-                interface_tables = self.db_context["interface_tables"]
-                # Prioritize public schema
-                if "public" in interface_tables:
-                    context["target_schema"] = "public"
-                    tables = interface_tables["public"]
-                    if tables:
-                        context["target_table"] = next(iter(tables))
-    
-        # Check for metadata queries
-        elif any(keyword in question for keyword in ["list", "show", "describe", "tables", "schemas"]):
-            context["is_metadata_query"] = True
-            context["query_type"] = "SELECT"
-            if "schemas" in question:
-                context["target_schema"] = "information_schema"
-                context["target_table"] = "schemata"
-            elif "tables" in question:
-                context["target_schema"] = "information_schema"
-                context["target_table"] = "tables"
-    
-        # Extract schema and table information using regex
-        if not context["target_schema"]:
-            # Check for explicit schema.table pattern
-            match = re.search(r'from\s+(["\w]+)\.(["\w]+)', question)
-            if match:
-                context["target_schema"] = match.group(1).strip('"')
-                context["target_table"] = match.group(2).strip('"')
-            else:
-                # Check for table in schema pattern
-                match = re.search(r'table\s+(["\w]+)\s+in\s+(["\w]+)', question)
-                if match:
-                    context["target_schema"] = match.group(2).strip('"')
-                    context["target_table"] = match.group(1).strip('"')
-    
-        return context
-
-    def enhance_plan_with_metadata(self, plan, user_question):
-        """Enhance the query plan with database metadata."""
-        # Analyze the query context
-        context = self.analyze_query_context(user_question)
-
-        # Special handling for interface queries
-        if context["is_interface_query"]:
-            if context["target_schema"] and context["target_table"]:
-                # Get table structure
-                table_structure = self.metadata_store.get_table_structure(
-                    self.current_db_name,
-                    context["target_schema"],
-                    context["target_table"]
-                )
-                
-                # If table structure is not found or stale, discover it
-                if not table_structure or not self.metadata_store.is_table_fresh(
-                    self.current_db_name,
-                    context["target_schema"],
-                    context["target_table"]
-                ):
-                    table_structure = self.discover_table_structure(
-                        context["target_schema"],
-                        context["target_table"],
-                        force_refresh=True
-                    )
-                
-                # Get interface-related columns
-                interface_columns = []
-                if table_structure and "columns" in table_structure:
-                    interface_columns = [
-                        col["name"] for col in table_structure["columns"]
-                        if "interface" in col["name"].lower()
-                    ]
-                
-                # Update plan with interface-specific information
-                plan.update({
-                    "query_type": "SELECT",
-                    "primary_table_or_datasource": f"{context['target_schema']}.{context['target_table']}",
-                    "relevant_columns": interface_columns,
-                    "table_structure": table_structure,
-                    "processing_instructions": "Query interface information",
-                    "filtering_conditions": "interface_name IS NOT NULL",
-                    "metadata": {
-                        "is_interface_query": True,
-                        "schema": context["target_schema"],
-                        "table": context["target_table"],
-                        "interface_columns": interface_columns
-                    }
-                })
-                return plan
-
-        # Handle metadata queries (list tables, schemas, etc.)
-        if context["is_metadata_query"]:
-            schemas = self.discover_database_structure()
-            if "schemas" in user_question.lower():
-                plan.update({
-                    "schemas": schemas,
-                    "primary_table_or_datasource": "information_schema.schemata",
-                    "query_type": "SELECT",
-                    "relevant_columns": ["schema_name"],
-                    "filtering_conditions": "schema_name NOT IN ('pg_catalog', 'information_schema')",
-                    "processing_instructions": "List all database schemas"
-                })
-            elif "tables" in user_question.lower():
-                all_tables = {}
-                for schema in schemas:
-                    tables = self.discover_schema_tables(schema)
-                    all_tables[schema] = tables
-                plan.update({
-                    "all_tables": all_tables,
-                    "primary_table_or_datasource": "information_schema.tables",
-                    "query_type": "SELECT",
-                    "relevant_columns": ["table_schema", "table_name"],
-                    "filtering_conditions": "table_schema NOT IN ('pg_catalog', 'information_schema')",
-                    "processing_instructions": "List all tables in all schemas"
-                })
-            return plan
-
-        # Handle regular queries
-        if context["target_schema"] and context["target_table"]:
-            table_structure = self.discover_table_structure(
-                context["target_schema"],
-                context["target_table"]
-            )
-            plan.update({
-                "schema": context["target_schema"],
-                "table": context["target_table"],
-                "table_structure": table_structure,
-                "primary_table_or_datasource": f"{context['target_schema']}.{context['target_table']}",
-                "relevant_columns": [col["name"] for col in table_structure.get("columns", [])]
-            })
-
-        # Add metadata about the enhancement
-        plan["metadata"] = {
-            "enhanced_at": str(datetime.now()),
-            "context": context,
-            "database": self.current_db_name,
-            "has_table_structure": bool(plan.get("table_structure")),
-            "discovered_columns": len(plan.get("relevant_columns", []))
-        }
-
-        return plan
+            self.schema_map = {"tables": {}, "relationships": []} # Ensure schema_map exists
 
     def get_db_connection_params(self):
         """Get database connection parameters from session state"""
         import streamlit as st
 
-        return {
-            "db_name": st.session_state.get("db_name", "new"),
+        # psycopg2 expects 'dbname' instead of 'db_name'
+        params = {
+            "dbname": st.session_state.get("db_name", "new"),
             "user": st.session_state.get("db_user", "postgres"),
             "password": st.session_state.get("db_password", "pass"),
             "host": st.session_state.get("db_host", "localhost"),
             "port": st.session_state.get("db_port", "5432")
         }
-
-    def create_test_table(self, schema="dev"):
-        """Create a test table in the specified schema if none exists"""
-        print(f"Attempting to create a test table in schema '{schema}'")
-
-        # Get connection parameters
-        params = self.get_db_connection_params()
-
-        try:
-            # Connect to the database
-            import psycopg2
-            conn = psycopg2.connect(
-                dbname=params["db_name"],
-                user=params["user"],
-                password=params["password"],
-                host=params["host"],
-                port=params["port"],
-                connect_timeout=5
-            )
-            conn.autocommit = True  # Set autocommit to True
-            cursor = conn.cursor()
-
-            # Check if schema exists, create if not
-            cursor.execute(f"SELECT schema_name FROM information_schema.schemata WHERE schema_name = '{schema}'")
-            if not cursor.fetchone():
-                print(f"Schema '{schema}' does not exist, creating it...")
-                cursor.execute(f"CREATE SCHEMA {schema}")
-                print(f"Schema '{schema}' created successfully")
-
-            # Create a test table
-            table_name = "test_table"
-            create_table_query = f"""
-            CREATE TABLE IF NOT EXISTS {schema}.{table_name} (
-                id SERIAL PRIMARY KEY,
-                name VARCHAR(100),
-                value INTEGER,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-            """
-            print(f"Executing query: {create_table_query.strip()}")
-            cursor.execute(create_table_query)
-
-            # Insert some test data
-            insert_query = f"""
-            INSERT INTO {schema}.{table_name} (name, value)
-            VALUES
-                ('Test Item 1', 100),
-                ('Test Item 2', 200),
-                ('Test Item 3', 300)
-            ON CONFLICT (id) DO NOTHING
-            """
-            print(f"Executing query: {insert_query.strip()}")
-            cursor.execute(insert_query)
-
-            # Clean up
-            cursor.close()
-            conn.close()
-
-            print(f"Test table '{schema}.{table_name}' created successfully")
-            return True
-        except Exception as e:
-            print(f"Error creating test table: {e}")
-            import traceback
-            traceback.print_exc()
-            return False
-
-    def discover_database_structure(self, force_refresh=False):
-        """Discover database structure and update metadata"""
-        # Get connection parameters
-        params = self.get_db_connection_params()
-        db_name = params["db_name"]
-
-        print(f"Discovering database structure for '{db_name}', force_refresh={force_refresh}")
-
-        # Set current database name
-        self.current_db_name = db_name
-
-        # Load existing metadata if available
-        self.metadata_store.load_metadata(db_name)
-        self.metadata_store.load_change_log(db_name)
-
-        # Discover schemas
-        schemas = self.discovery_service.discover_schemas(
-            db_name=db_name,
-            user=params["user"],
-            password=params["password"],
-            host=params["host"],
-            port=params["port"],
-            force_refresh=force_refresh
-        )
-
-        print(f"Discovered schemas: {schemas}")
-
-        # For each schema, check if it has tables
-        for schema in schemas:
-            tables = self.discover_schema_tables(schema, force_refresh=force_refresh)
-            print(f"Schema '{schema}' has {len(tables)} tables")
-            if len(tables) > 0:
-                print(f"First 10 tables in schema '{schema}': {tables[:10]}")
-                if len(tables) > 10:
-                    print(f"...and {len(tables) - 10} more tables")
-
-        return schemas
-
-    def discover_schema_tables(self, schema, force_refresh=False):
-        """Discover tables in a schema and update metadata"""
-        if not self.current_db_name:
-            self.discover_database_structure()
-
-        # Set current schema
-        self.current_schema = schema
-
-        # Get connection parameters
-        params = self.get_db_connection_params()
-
-        # Discover tables
-        tables = self.discovery_service.discover_tables(
-            db_name=self.current_db_name,
-            schema=schema,
-            user=params["user"],
-            password=params["password"],
-            host=params["host"],
-            port=params["port"],
-            force_refresh=force_refresh
-        )
-
-        return tables
-
-    def discover_table_structure(self, schema, table, force_refresh=False):
-        """Discover table structure and update metadata"""
-        if not self.current_db_name:
-            self.discover_database_structure()
-
-        # Get connection parameters
-        params = self.get_db_connection_params()
-
-        # Discover table structure
-        table_structure = self.discovery_service.discover_table_structure(
-            db_name=self.current_db_name,
-            schema=schema,
-            table=table,
-            user=params["user"],
-            password=params["password"],
-            host=params["host"],
-            port=params["port"],
-            force_refresh=force_refresh
-        )
-
-        return table_structure
+        return params
 
     def _validate_response(self, response: dict) -> bool:
         """
@@ -885,8 +494,17 @@ class PlannerAgent(Agent):
             # Get the model for generating JSON responses
             model = self.get_model(json_model=True)
 
-            # Create the system prompt
-            system_prompt = planner_prompt_template
+            # Create the system prompt, injecting the schema map
+            schema_json = json.dumps(self.schema_map, indent=2)
+            system_prompt = f"""{planner_prompt_template}
+
+Here is the full schema of the database you are working with:
+<schema>
+{schema_json}
+</schema>
+
+Analyze this schema to understand the relationships between tables and use this understanding to create your plan.
+"""
 
             # Create the user input
             user_input = f"User Question: {user_question}"
